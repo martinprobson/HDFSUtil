@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "hdfs.filesystem",
+      "type": "java.lang.String",
+      "description": "URL for HDFS FileSystem - set to file:/// to use local filesystem for testing."
+  }
+] }
