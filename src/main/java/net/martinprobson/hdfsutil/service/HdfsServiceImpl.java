@@ -1,12 +1,12 @@
 package net.martinprobson.hdfsutil.service;
 
+import net.martinprobson.hdfsutil.config.HdfsConfiguration;
 import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import net.martinprobson.hdfsutil.config.HdfsConfiguration;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -19,10 +19,8 @@ import java.util.Optional;
 public class HdfsServiceImpl implements HdfsService {
 
     private static final Logger LOG = LoggerFactory.getLogger(HdfsServiceImpl.class);
-
-    private Optional<FileSystem> fs = Optional.empty();
-
     private final HdfsConfiguration hdfsConfiguration;
+    private Optional<FileSystem> fs = Optional.empty();
 
     public HdfsServiceImpl(HdfsConfiguration hdfsConfiguration) {
         this.hdfsConfiguration = hdfsConfiguration;
@@ -54,7 +52,7 @@ public class HdfsServiceImpl implements HdfsService {
             line = new StringBuilder();
             String tmp;
             while ((tmp = br.readLine()) != null)
-                line.append(tmp + "\n");
+                line.append(tmp).append("\n");
             br.close();
         } catch (IOException e) {
             LOG.error("Error reading file: " + fileName, e);
